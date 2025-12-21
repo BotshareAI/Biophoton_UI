@@ -1,0 +1,19 @@
+{
+  "app": {
+    "title": "Biofotón"
+  },
+  "sidebar": {
+    "select_user": "Iniciar una sesión",
+    "new_client": "Nuevo cliente",
+    "remedy": "Nuevo remedio",
+    "settings": "Ajustes",
+    "logout": "Cerrar sesión"
+  },
+  "settings": {
+    "settings": "Ajustes",
+    "language": "Idioma",
+    "english": "Inglés",
+    "spanish": "Español",
+    "sound": "Sonido"
+  }
+}
