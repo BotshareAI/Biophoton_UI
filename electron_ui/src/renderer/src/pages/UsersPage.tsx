@@ -98,8 +98,8 @@ export function UsersPage({
   return (
     <div className="space-y-8">
       <p className="text-lg font-semibold mb-4">Start a session</p>
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="w-[49%] relative">
+      <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-between gap-2">
+        <div className="w-full sm:w-[49%] relative">
           <Input
             ref={inputRef}
             placeholder="Search client"
@@ -110,14 +110,14 @@ export function UsersPage({
           />
           <Search className="absolute left-0 top-0 m-2.5 h-4 w-4 text-gray-500" />
         </div>
-        <div className="flex gap-2">
-          <Button onClick={onClickSkip}>
+        <div className="flex gap-2 w-full sm:w-auto">
+          <Button onClick={onClickSkip} className="w-full sm:w-auto">
             <UserRoundX className="mr-2 h-4 w-4" />
             Skip Client
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {filtered.map((user) => (
           <UserCard
             key={user.id}
@@ -140,10 +140,10 @@ export function UsersPage({
                   <X />
                 </DrawerClose>
               </DrawerHeader>
-              <DrawerFooter className="flex flex-row justify-center gap-8 mb-4 pt-0">
+              <DrawerFooter className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 mb-4 pt-0">
                 <Button
                   // variant="outline"
-                  className="w-[160px]"
+                  className="w-full sm:w-[160px]"
                   onClick={(e) => {
                     e.stopPropagation()
                     goToSession(1, userId)
@@ -154,7 +154,7 @@ export function UsersPage({
                 </Button>
                 <Button
                   // variant="outline"
-                  className="w-[160px]"
+                  className="w-full sm:w-[160px]"
                   onClick={(e) => {
                     e.stopPropagation()
                     goToSession(2, userId)
@@ -165,6 +165,7 @@ export function UsersPage({
                 </Button>
                 <Button
                   // variant="outline"
+                  className="w-full sm:w-[160px]"
                   onClick={(e) => {
                     e.stopPropagation()
                     goToSession(3, userId)

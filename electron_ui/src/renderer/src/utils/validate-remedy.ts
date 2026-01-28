@@ -17,9 +17,6 @@ export function validateRemedy(
     callback('subcategoryId', 'Subcategory')
     result = false
   }
-  if (remedy.meridianIds.length == 0) {
-    callback('meridianIds', 'Meridians')
-    result = false
-  }
+  // Meridian selection is now optional - no validation needed
   return result
 }
