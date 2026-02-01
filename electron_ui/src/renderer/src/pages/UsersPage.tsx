@@ -128,7 +128,14 @@ export function UsersPage({
           />
         ))}
       </div>
-      <Drawer open={open} onOpenChange={onOpenChange} modal={false}>
+      <Drawer
+        open={open}
+        onOpenChange={onOpenChange}
+        modal={false}
+        snapPoints={[1]}
+        activeSnapPoint={1}
+        direction="bottom"
+      >
         <DrawerContent className={clsx(keyboard && 'px-4 pt-1 pb-3', 'bg-[#e3e7e6]')}>
           {keyboard ? (
             <Keyboard setInput={handleInput} onClose={closeKeyboard} />
@@ -140,7 +147,7 @@ export function UsersPage({
                   <X />
                 </DrawerClose>
               </DrawerHeader>
-              <DrawerFooter className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 py-2 px-4 sm:py-4">
+              <DrawerFooter className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 py-2 px-4 sm:py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
                 <Button
                   // variant="outline"
                   className="w-full sm:w-[160px]"
