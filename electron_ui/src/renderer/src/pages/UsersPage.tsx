@@ -135,12 +135,12 @@ export function UsersPage({
           ) : (
             <>
               <DrawerHeader className="relative">
-                <DrawerTitle className="leading-[60px]">Choose session type</DrawerTitle>
+                <DrawerTitle className="leading-8">Choose session type</DrawerTitle>
                 <DrawerClose className="absolute right-1">
                   <X />
                 </DrawerClose>
               </DrawerHeader>
-              <DrawerFooter className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 mb-4 pt-0">
+              <DrawerFooter className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 py-2 px-4 sm:py-4">
                 <Button
                   // variant="outline"
                   className="w-full sm:w-[160px]"
