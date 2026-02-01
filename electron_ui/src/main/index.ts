@@ -28,12 +28,12 @@ function createWindow(): BrowserWindow {
       contextIsolation: true,
       nodeIntegration: false,
       additionalArguments: [
-        `--cursorHidden=${(process.env.CURSOR_HIDDEN || 'true') === 'true' ? '1' : '0'}`
+        `--cursorHidden=${(process.env.CURSOR_HIDDEN || 'false') === 'true' ? '1' : '0'}`
       ]
     }
   })
 
-  // mainWindow.webContents.openDevTools({ mode: 'detach' })
+  mainWindow.webContents.openDevTools({ mode: 'detach' })
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
