@@ -16,7 +16,7 @@ function createWindow(): BrowserWindow {
   const mainWindow = new BrowserWindow({
     useContentSize: true,
     width: 1280,
-    height: 600,
+    height: 700,
     show: false,
     autoHideMenuBar: true,
     resizable: false,
