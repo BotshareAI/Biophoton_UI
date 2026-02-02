@@ -20,7 +20,7 @@ function createWindow(): BrowserWindow {
     show: false,
     autoHideMenuBar: true,
     resizable: false,
-    fullscreen: false,
+    fullscreen: process.platform === 'linux',
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
