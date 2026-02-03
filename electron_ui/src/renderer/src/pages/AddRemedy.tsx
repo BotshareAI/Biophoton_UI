@@ -12,7 +12,14 @@ import { Switch } from '@renderer/components/ui/switch'
 import { validateRemedy } from '@renderer/utils/validate-remedy'
 import { Drawer, DrawerContent } from '@renderer/components/ui/drawer'
 import Keyboard from '@renderer/components/keyboard'
-import { Alert, AlertDescription, AlertTitle } from '@renderer/components/ui/alert'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from '@renderer/components/ui/dialog'
 import clsx from 'clsx'
 
 enum Scan {
@@ -100,15 +107,20 @@ export function AddRemedyPage(): React.JSX.Element {
 
   return (
     <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col w-full ">
-      <p className="text-lg font-semibold mb-2">New Remedy</p>
-      {successMessage && (
-        <div className="mb-4">
-          <Alert>
-            <AlertTitle>Saved</AlertTitle>
-            <AlertDescription>{successMessage}</AlertDescription>
-          </Alert>
-        </div>
-      )}
+      <p className="text-lg font-semibold mb-4">New Remedy</p>
+      <Dialog open={!!successMessage} onOpenChange={(open) => !open && setSuccessMessage(null)}>
+        <DialogContent showCloseButton={true}>
+          <DialogHeader>
+            <DialogTitle>Saved</DialogTitle>
+            <DialogDescription>{successMessage ?? ''}</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button type="button" onClick={() => setSuccessMessage(null)}>
+              OK
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       <Stepper
         labels={{ step1: 'Fill Remedy Data', step2: 'Scan Remedy' }}
         canProceedFromStep={scan == Scan.COMPLETED}
