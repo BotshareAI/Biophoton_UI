@@ -260,16 +260,16 @@ function FooterControls({
   onNext: (e: React.MouseEvent<HTMLButtonElement>) => void
 }): React.JSX.Element {
   return (
-    <div className="mt-6 md:mt-8 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mt-6 md:mt-8 flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
       <div className="text-sm text-muted-foreground">
         {step === 1 ? 'Step 1 of 2' : 'Step 2 of 2'}
       </div>
-      <div className="flex gap-2 w-full sm:w-auto">
+      <div className="flex gap-4 sm:gap-6 w-full sm:w-auto">
         <Button
           type="button"
           variant="outline"
           size="lg"
-          className="flex-1 sm:flex-none min-h-12 px-4 md:px-5"
+          className="flex-1 sm:flex-none min-h-12 min-w-[7rem] px-4 md:px-5 touch-manipulation"
           onClick={onPrev}
           disabled={step === 1}
         >
@@ -278,7 +278,7 @@ function FooterControls({
         <Button
           type={step === 2 ? 'submit' : 'button'}
           size="lg"
-          className="flex-1 sm:flex-none min-h-12 px-4 md:px-5"
+          className="flex-1 sm:flex-none min-h-12 min-w-[7rem] px-4 md:px-5 touch-manipulation"
           onClick={step === 1 ? onNext : undefined}
           disabled={step === 2 ? !canNext : false}
         >
