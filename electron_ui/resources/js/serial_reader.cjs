@@ -359,6 +359,7 @@ function sendMode2AndStart(freqs, durationMs) {
 
 function sendMode4() {
   currentMode = 4
+  enqueueCmd('STOP') // ensure MCU is idle so it accepts MODE,4
   enqueueCmd('MODE,4')
   enqueueCmd('START')
 }
