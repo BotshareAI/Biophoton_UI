@@ -1,7 +1,7 @@
 import { Remedy } from '@shared/types/remedy'
 import { useRemediesStore } from '@renderer/store/remediesStore'
 import { Button } from '@renderer/components/ui/button'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ProgressBar } from '@renderer/components/session/ProgressBar'
 import Stepper from '@renderer/components/ui/stepper'
 import { RemedyFormContent } from '@renderer/components/remedies/RemedyFormContent'
@@ -12,6 +12,7 @@ import { Switch } from '@renderer/components/ui/switch'
 import { validateRemedy } from '@renderer/utils/validate-remedy'
 import { Drawer, DrawerContent } from '@renderer/components/ui/drawer'
 import Keyboard from '@renderer/components/keyboard'
+import { Alert, AlertDescription, AlertTitle } from '@renderer/components/ui/alert'
 import clsx from 'clsx'
 
 enum Scan {
@@ -25,6 +26,7 @@ export function AddRemedyPage(): React.JSX.Element {
   const [scan, setScan] = useState(Scan.INIT)
   const [step, setStep] = useState<StepId>(1)
   const [focusedField, setFocusedField] = useState<null | string>(null)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const addRemedy = useRemediesStore((s) => s.addRemedy)
   const onSubmit = async (remedy: Remedy, setError, onSuccess): Promise<void> => {
     if (!remedy.categoryId) {
@@ -38,7 +40,7 @@ export function AddRemedyPage(): React.JSX.Element {
     await addRemedy(remedy)
     onSuccess()
     setStep(1)
-    alert('Remedy saved successfully.')
+    setSuccessMessage('Remedy saved successfully.')
   }
   const { handleSubmit, onHandleSubmit, form, categories, subcategories, meridians } =
     useRemedyForm({
@@ -89,9 +91,24 @@ export function AddRemedyPage(): React.JSX.Element {
       }
     })
   }
+
+  useEffect(() => {
+    if (!successMessage) return
+    const timer = setTimeout(() => setSuccessMessage(null), 4000)
+    return () => clearTimeout(timer)
+  }, [successMessage])
+
   return (
     <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col w-full ">
-      <p className="text-lg font-semibold mb-4">New Remedy</p>
+      <p className="text-lg font-semibold mb-2">New Remedy</p>
+      {successMessage && (
+        <div className="mb-4">
+          <Alert>
+            <AlertTitle>Saved</AlertTitle>
+            <AlertDescription>{successMessage}</AlertDescription>
+          </Alert>
+        </div>
+      )}
       <Stepper
         labels={{ step1: 'Fill Remedy Data', step2: 'Scan Remedy' }}
         canProceedFromStep={scan == Scan.COMPLETED}
