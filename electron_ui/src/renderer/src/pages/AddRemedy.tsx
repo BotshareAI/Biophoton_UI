@@ -38,6 +38,7 @@ export function AddRemedyPage(): React.JSX.Element {
     await addRemedy(remedy)
     onSuccess()
     setStep(1)
+    alert('Remedy saved successfully.')
   }
   const { handleSubmit, onHandleSubmit, form, categories, subcategories, meridians } =
     useRemedyForm({
